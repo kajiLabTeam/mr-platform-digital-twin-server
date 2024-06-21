@@ -1,5 +1,5 @@
 # goのバージョン
-FROM golang:1.20.10-alpine3.17
+FROM golang:1.22.4-alpine3.20
 
 # OSのインストール済みのパッケージをバージョンアップ&必要なパッケージをインストール
 RUN apk upgrade --update && \
