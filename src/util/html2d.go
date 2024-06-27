@@ -54,6 +54,7 @@ func UpdateHtml2dContent(content common.Content) (common.ResponseHtml2d, error) 
 		TextURL:   html2d.TextURL,
 		StyleURL:  html2d.StyleURL,
 	}
+
 	return responseHtml2d, nil
 }
 
@@ -76,5 +77,6 @@ func getHtml2dContentFromServer(domain string) (common.RequestHtml2d, error) {
 	if err != nil {
 		return common.RequestHtml2d{}, err
 	}
+
 	return html2d, nil
 }

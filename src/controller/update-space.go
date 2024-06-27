@@ -17,6 +17,12 @@ func UpdateSpace(c *gin.Context) {
 		return
 	}
 
+	// 配列の中身が空の場合は204を返す
+	if len(req.ContentIds) == 0 {
+		c.Status(http.StatusNoContent)
+		return
+	}
+
 	// 生成された content を格納するための配列
 	var responseContents common.ResponseContents
 
@@ -32,12 +38,6 @@ func UpdateSpace(c *gin.Context) {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
-	}
-
-	// Check if responseContents is empty by checking the length of slices
-	if len(responseContents.ResponseHtml2ds) == 0 && len(responseContents.ResponseModel3ds) == 0 {
-		c.JSON(http.StatusOK, []string{})
-		return
 	}
 
 	// responseContents.ResponseHtml2ds と responseContents.ResponseModel3ds が空の場合は空の配列を返す
