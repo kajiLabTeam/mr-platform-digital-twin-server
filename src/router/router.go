@@ -1,10 +1,8 @@
 package router
 
 import (
-	"database/sql"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
 
@@ -16,23 +14,6 @@ import (
 func Init() {
 	f, _ := os.Create("../log/server.log")
 	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
-
-	port := os.Getenv("POSTGRES_PORT")
-	user := os.Getenv("POSTGRES_USER")
-	password := os.Getenv("POSTGRES_PASSWORD")
-	dbname := os.Getenv("POSTGRES_DB")
-
-	db, err := sql.Open("postgres", "host=postgres port="+port+" user="+user+" password="+password+" dbname="+dbname+" sslmode=disable")
-
-	if err != nil {
-		log.Fatalf("Error opening database: %q", err)
-	}
-	defer db.Close()
-
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Error connecting to the database: %q", err)
-	}
 
 	r := gin.Default()
 	r.Use(cors.Default())
