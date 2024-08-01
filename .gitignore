@@ -22,7 +22,5 @@ go.work
 go.work.sum
 
 */postgres/data/*
-
-.DS_Store:
-
-*/sensor-storage
+.DS_Store
+docker/go/log/server.log
